@@ -1,10 +1,11 @@
 import React, { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const MainComponent = () => {
+function MainComponent() {
   return (
-    <NavigationContainer>{/* Rest of your app code */}
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={styles.container}>
 
         <StatusBar style="auto" />
@@ -14,10 +15,30 @@ const MainComponent = () => {
         </View>
 
       </View>
+    </View>
+  );
+}
+
+function DetailsScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ホーム">
+        <Stack.Screen name="ホーム" component={MainComponent} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-export default MainComponent;
+export default App;
 
 const styles = StyleSheet.create({
   container: {
