@@ -2,6 +2,7 @@ import React, { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 function MainComponent({ navigation }) {
   return (
@@ -42,12 +43,38 @@ function DetailsScreen({route}) {
   );
 }
 
+// Define footer tabs
+const Tab = createBottomTabNavigator();
+function NestedNavigation() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Feed" component={Feed} />
+      <Tab.Screen name="Messages" component={Messages} />
+    </Tab.Navigator>
+  );
+}
+
+function Feed() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Feed Screen</Text>
+    </View>
+  );
+}
+function Messages() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Messages Screen</Text>
+    </View>
+  );
+}
+
 const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="ホーム"
+        initialRouteName="NestedNavigation"
         // Set options to be used in the overall navigation bar
         screenOptions = {{
           headerStyle: {
@@ -59,6 +86,7 @@ function App() {
           },
         }}
       >
+        <Stack.Screen name="NestedNavigation" component={NestedNavigation} options={{ headerShown: false }} />
         <Stack.Screen name="ホーム" component={MainComponent} options={{ title: 'ホーム' }} />
         <Stack.Screen name="詳細画面" component={DetailsScreen} options={{ title: '詳細画面' }} />
       </Stack.Navigator>
