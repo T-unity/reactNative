@@ -1,17 +1,20 @@
 import React, { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 const MainComponent = () => {
   return (
-    <View style={styles.container}>
+    <NavigationContainer>{/* Rest of your app code */}
+      <View style={styles.container}>
 
-      <StatusBar style="auto" />
+        <StatusBar style="auto" />
 
-      <View style={[styles.base]}>
-        <Text style={styles.text}>Remid Me</Text>
+        <View style={[styles.base]}>
+          <Text style={styles.text}>Hoge</Text>
+        </View>
+
       </View>
-
-    </View>
+    </NavigationContainer>
   );
 }
 export default MainComponent;
