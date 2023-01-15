@@ -1,9 +1,9 @@
 import React, { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function MainComponent() {
+function MainComponent({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={styles.container}>
@@ -12,6 +12,10 @@ function MainComponent() {
 
         <View style={[styles.base]}>
           <Text style={styles.text}>Hoge</Text>
+          <Button
+            title="詳細を見る"
+            onPress={() => navigation.navigate('詳細画面')}
+          />
         </View>
 
       </View>
@@ -33,7 +37,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ホーム">
         <Stack.Screen name="ホーム" component={MainComponent} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="詳細画面" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
