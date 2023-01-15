@@ -1,5 +1,5 @@
 import React, { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -14,7 +14,13 @@ function MainComponent({ navigation }) {
           <Text style={styles.text}>Hoge</Text>
           <Button
             title="詳細を見る"
-            onPress={() => navigation.navigate('詳細画面')}
+            onPress={() => {
+              // navigate with params
+              navigation.navigate('詳細画面', {
+                indexId: 1,
+                subText: 'hogehogehoge',
+              });
+            }}
           />
         </View>
 
@@ -23,10 +29,15 @@ function MainComponent({ navigation }) {
   );
 }
 
-function DetailsScreen() {
+function DetailsScreen({route}) {
+  // get params from root page
+  const { indexId, subText } = route.params;
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Details Screen</Text>
+      <Text>番号: {JSON.stringify(indexId)}</Text>
+      <Text>サブタイトル: {JSON.stringify(subText)}</Text>
     </View>
   );
 }
@@ -35,9 +46,21 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ホーム">
-        <Stack.Screen name="ホーム" component={MainComponent} />
-        <Stack.Screen name="詳細画面" component={DetailsScreen} />
+      <Stack.Navigator
+        initialRouteName="ホーム"
+        // Set options to be used in the overall navigation bar
+        screenOptions = {{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        <Stack.Screen name="ホーム" component={MainComponent} options={{ title: 'ホーム' }} />
+        <Stack.Screen name="詳細画面" component={DetailsScreen} options={{ title: '詳細画面' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
