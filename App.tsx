@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+// Define footer tabs
 function MainComponent({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -29,7 +30,32 @@ function MainComponent({ navigation }) {
     </View>
   );
 }
+function SecondComponent() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>SecondComponent Screen</Text>
+    </View>
+  );
+}
+function Messages() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Messages Screen</Text>
+    </View>
+  );
+}
+const Tab = createBottomTabNavigator();
+function NestedNavigation() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Main" component={MainComponent} />
+      <Tab.Screen name="Second" component={SecondComponent} />
+      <Tab.Screen name="Messages" component={Messages} />
+    </Tab.Navigator>
+  );
+}
 
+// define stack navigations
 function DetailsScreen({route}) {
   // get params from root page
   const { indexId, subText } = route.params;
@@ -39,32 +65,6 @@ function DetailsScreen({route}) {
       <Text>Details Screen</Text>
       <Text>番号: {JSON.stringify(indexId)}</Text>
       <Text>サブタイトル: {JSON.stringify(subText)}</Text>
-    </View>
-  );
-}
-
-// Define footer tabs
-const Tab = createBottomTabNavigator();
-function NestedNavigation() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Feed" component={Feed} />
-      <Tab.Screen name="Messages" component={Messages} />
-    </Tab.Navigator>
-  );
-}
-
-function Feed() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Feed Screen</Text>
-    </View>
-  );
-}
-function Messages() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Messages Screen</Text>
     </View>
   );
 }
