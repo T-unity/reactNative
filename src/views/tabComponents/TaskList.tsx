@@ -1,9 +1,12 @@
 // dependencies
 import React, { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 
 // Components
 import BaseStyle from '../../styles/BasicStyles';
+
+// DemoData
+import { DemoData } from '../../tmp/SampleData';
 
 // Define footer tabs
 function TaskList() {
@@ -13,9 +16,10 @@ function TaskList() {
 
         <StatusBar style="auto" />
 
-        <View style={[BaseStyle.base]}>
-          <Text style={BaseStyle.text}>タスク一覧</Text>
-        </View>
+        <FlatList
+          data={ DemoData }
+          renderItem={({item}) => <Text style={BaseStyle.item}>{item.key}</Text>}
+        />
 
       </View>
     </View>
