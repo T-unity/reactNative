@@ -5,7 +5,7 @@ import { Text, View } from 'react-native';
 function Third() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>SecondComponent Screen</Text>
+      <Text>ThirdComponent Screen</Text>
     </View>
   );
 }

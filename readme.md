@@ -4,6 +4,7 @@
 - yarn install / npm install
 - yarn expo start -i 
 
-## Libraries
+## references
 
+- https://reactnative.dev/
 - https://reactnavigation.org/
