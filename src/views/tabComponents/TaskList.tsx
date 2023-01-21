@@ -1,9 +1,9 @@
 // dependencies
 import React, { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 // Define footer tabs
-function First({ navigation }) {
+function TaskList() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={styles.container}>
@@ -11,17 +11,7 @@ function First({ navigation }) {
         <StatusBar style="auto" />
 
         <View style={[styles.base]}>
-          <Text style={styles.text}>Hoge</Text>
-          <Button
-            title="詳細を見る"
-            onPress={() => {
-              // navigate with params
-              navigation.navigate('詳細画面', {
-                indexId: 1,
-                subText: 'hogehogehoge',
-              });
-            }}
-          />
+          <Text style={styles.text}>タスク一覧</Text>
         </View>
 
       </View>
@@ -29,7 +19,7 @@ function First({ navigation }) {
   );
 }
 
-export default First;
+export default TaskList;
 
 const styles = StyleSheet.create({
   container: {

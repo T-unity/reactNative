@@ -3,17 +3,17 @@ import React from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Components
-import First from '../views/tabComponents/First';
-import Second from '../views/tabComponents/Second';
-import Third from '../views/tabComponents/Third';
+import TaskList from './tabComponents/TaskList';
+import RunningTasks from './tabComponents/RunningTasks';
+import StoppedTasks from './tabComponents/StoppedTasks';
 
 const Tab = createBottomTabNavigator();
 function NestedNavigation() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="First" component={First} />
-      <Tab.Screen name="Second" component={Second} />
-      <Tab.Screen name="Third" component={Third} />
+      <Tab.Screen name="タスク一覧" component={TaskList} />
+      <Tab.Screen name="実行中のタスク" component={RunningTasks} />
+      <Tab.Screen name="停止中のタスク" component={StoppedTasks} />
     </Tab.Navigator>
   );
 }

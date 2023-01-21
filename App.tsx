@@ -1,12 +1,11 @@
 // dependencies
-import React, { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React from 'expo-status-bar';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Components
-import Main from './src/views/tabComponents/First';
-import DetailsScreen from './src/views/DetailsScreen';
+import TaskList from './src/views/tabComponents/TaskList';
 import TabBar from './src/views/TabBar';
 
 const Stack = createNativeStackNavigator();
@@ -14,7 +13,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="NestedNavigation"
+        initialRouteName="TabNavigationBar"
         // Set options to be used in the overall navigation bar
         screenOptions = {{
           headerStyle: {
@@ -26,9 +25,12 @@ function App() {
           },
         }}
       >
-        <Stack.Screen name="NestedNavigation" component={TabBar} options={{ headerShown: false }} />
-        <Stack.Screen name="ホーム" component={Main} options={{ title: 'ホーム' }} />
-        <Stack.Screen name="詳細画面" component={DetailsScreen} options={{ title: '詳細画面' }} />
+        {/* Define TabBar */}
+        <Stack.Screen name="TabNavigationBar" component={TabBar} options={{ headerShown: false }} />
+
+        {/* Define Screen Navigation */}
+        <Stack.Screen name="ホーム" component={TaskList} options={{ title: 'ホーム' }} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,12 +2,12 @@
 import React from 'expo-status-bar';
 import { Text, View } from 'react-native';
 
-function Third() {
+function StoppedTasks() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>ThirdComponent Screen</Text>
+      <Text>停止されているタスク一覧をソートして表示する</Text>
     </View>
   );
 }
 
-export default Third;
+export default StoppedTasks;
