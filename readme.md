@@ -6,8 +6,17 @@
 
 ## references
 
+### basic
+
 - https://reactnative.dev/
+
+### navigation
+
 - https://reactnavigation.org/
+
+### Backend / Authenticate
+
+- https://docs.expo.dev/guides/using-firebase/
 
 ## memo
 
