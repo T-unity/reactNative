@@ -1,11 +1,15 @@
+// dependencies
 import React, { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// Components
+import DetailsScreen from './src/views/DetailsScreen';
+import TabBar from './src/views/TabBar';
 
 // Define footer tabs
-function MainComponent({ navigation }) {
+function Main({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={styles.container}>
@@ -30,44 +34,6 @@ function MainComponent({ navigation }) {
     </View>
   );
 }
-function SecondComponent() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>SecondComponent Screen</Text>
-    </View>
-  );
-}
-function Messages() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Messages Screen</Text>
-    </View>
-  );
-}
-const Tab = createBottomTabNavigator();
-function NestedNavigation() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Main" component={MainComponent} />
-      <Tab.Screen name="Second" component={SecondComponent} />
-      <Tab.Screen name="Messages" component={Messages} />
-    </Tab.Navigator>
-  );
-}
-
-// define stack navigations
-function DetailsScreen({route}) {
-  // get params from root page
-  const { indexId, subText } = route.params;
-
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Text>番号: {JSON.stringify(indexId)}</Text>
-      <Text>サブタイトル: {JSON.stringify(subText)}</Text>
-    </View>
-  );
-}
 
 const Stack = createNativeStackNavigator();
 function App() {
@@ -86,8 +52,8 @@ function App() {
           },
         }}
       >
-        <Stack.Screen name="NestedNavigation" component={NestedNavigation} options={{ headerShown: false }} />
-        <Stack.Screen name="ホーム" component={MainComponent} options={{ title: 'ホーム' }} />
+        <Stack.Screen name="NestedNavigation" component={TabBar} options={{ headerShown: false }} />
+        <Stack.Screen name="ホーム" component={Main} options={{ title: 'ホーム' }} />
         <Stack.Screen name="詳細画面" component={DetailsScreen} options={{ title: '詳細画面' }} />
       </Stack.Navigator>
     </NavigationContainer>
