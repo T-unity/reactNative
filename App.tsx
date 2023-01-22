@@ -7,8 +7,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TaskList from './src/views/tabComponents/TaskList';
 import TabBar from './src/views/TabBar';
 
+// Data Driving
+import getDataFromFirebase from './src/Auth/WelcomeAndAuth';
+
 const Stack = createNativeStackNavigator();
 function App() {
+  getDataFromFirebase;
+
   return (
     <NavigationContainer>
       <Stack.Navigator
