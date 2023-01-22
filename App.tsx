@@ -9,10 +9,22 @@ import TabBar from './src/views/TabBar';
 
 // Data Driving
 import getDataFromFirebase from './src/Auth/WelcomeAndAuth';
+import FirestoreDB from './firebase'
 
 const Stack = createNativeStackNavigator();
 function App() {
   getDataFromFirebase;
+
+  function saveDataToFirebase(data: string) {
+    FirestoreDB.collection("users").add({ user_id: data })
+      .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
+      });
+  }
+  saveDataToFirebase( 'hoge' );
 
   return (
     <NavigationContainer>
